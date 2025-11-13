@@ -448,6 +448,7 @@ deno test --allow-net
 - [ ] Compte Deno Deploy (optionnel, peut être créé pendant la démo)
 
 **Note:** `deno init` crée automatiquement:
+
 - `deno.json` (configuration)
 - `main.ts` (point d'entrée)
 - `main_test.ts` (tests)

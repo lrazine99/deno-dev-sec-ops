@@ -50,7 +50,7 @@ const securityHeaders = async (ctx: Context, next: () => Promise<unknown>) => {
   response.headers.set("X-Frame-Options", "DENY");
   response.headers.set("X-XSS-Protection", "1; mode=block");
   response.headers.set("Strict-Transport-Security", "max-age=31536000");
-  
+
   await next();
 };
 
