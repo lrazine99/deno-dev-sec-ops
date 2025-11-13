@@ -51,7 +51,30 @@ curl -I http://localhost:8000/users
 
 ## 📁 Fichiers
 
-- `server.ts`` - API sécurisée avec validation et headers de sécurité
+- `server.ts` - API sécurisée avec validation et headers de sécurité
 - `server_test.ts` - Tests de sécurité
 - `deno.json` - Configuration du projet
 - `.github/workflows/devsecops.yml` - Pipeline CI/CD
+
+## 🚢 Déploiement
+
+### Configuration du token (requis pour CI/CD)
+
+Pour activer le déploiement automatique via GitHub Actions:
+
+1. **Obtenir un token Deno Deploy:**
+   - Aller sur [deno.com/deploy](https://deno.com/deploy)
+   - Settings → Access Tokens → Create Token
+   - Copier le token
+
+2. **Ajouter le secret dans GitHub:**
+   - Repository → Settings → Secrets and variables → Actions
+   - New repository secret
+   - Nom: `DENO_DEPLOY_TOKEN`
+   - Valeur: coller le token
+
+📖 **Instructions détaillées:** Voir `SETUP_DEPLOY.md`
+
+### Déploiement automatique
+
+Le workflow `.github/workflows/devsecops.yml` déploie automatiquement sur la branche `main` après les tests de sécurité.
