@@ -36,7 +36,7 @@ jobs:
         run: deno check server.ts
 
       - name: Run tests
-        run: deno test --allow-net --coverage=cov_profile
+        run: deno test --coverage=cov_profile
 
       - name: Coverage report
         run: deno coverage cov_profile
