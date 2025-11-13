@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true
+  },
+  "lint": {
+    "rules": {
+      "tags": ["recommended", "security"]
+    }
+  },
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 80,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": false,
+    "proseWrap": "preserve"
+  },
+  "imports": {
+    "std/": "https://deno.land/std@0.208.0/",
+    "oak": "https://deno.land/x/oak@v12.6.1/mod.ts"
+  },
+  "deploy": {
+    "project": "mon-projet-securise",
+    "entrypoint": "server.ts"
+  }
+}
