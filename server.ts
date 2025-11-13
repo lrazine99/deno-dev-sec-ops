@@ -10,12 +10,15 @@ const users: User[] = [];
 
 let nextId = 1;
 
-function isValidEmail(email: string): boolean {
+export function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
-function validateUser(body: unknown): { valid: boolean; errors: string[] } {
+export function validateUser(body: unknown): {
+  valid: boolean;
+  errors: string[];
+} {
   const errors: string[] = [];
 
   if (!body || typeof body !== "object") {
@@ -106,5 +109,9 @@ app.use(securityHeaders);
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-console.log("Server running on http://localhost:8000");
-await app.listen({ port: 8000 });
+if (import.meta.main) {
+  console.log("Server running on http://localhost:8000");
+  await app.listen({ port: 8000 });
+}
+
+export { app };
