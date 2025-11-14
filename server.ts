@@ -114,11 +114,15 @@ const handler = async (req: Request): Promise<Response> => {
 };
 
 if (import.meta.main) {
-  const port = Deno.env.get("PORT") ? parseInt(Deno.env.get("PORT")!) : 8000;
-  console.log(`Server running on http://localhost:${port}`);
-  Deno.serve({ port }, handler);
-} else {
-  Deno.serve(handler);
+  const isDenoDeploy = Deno.env.get("DENO_DEPLOY") !== undefined;
+
+  if (isDenoDeploy) {
+    Deno.serve(handler);
+  } else {
+    const port = Deno.env.get("PORT") ? parseInt(Deno.env.get("PORT")!) : 8000;
+    console.log(`Server running on http://localhost:${port}`);
+    Deno.serve({ port }, handler);
+  }
 }
 
 export { app };
