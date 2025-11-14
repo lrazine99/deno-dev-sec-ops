@@ -52,12 +52,14 @@ Cette erreur signifie que le secret `DENO_DEPLOY_TOKEN` n'est pas configuré ou 
 ### Vérifier que le secret existe
 
 Dans GitHub:
+
 - Repository → Settings → Secrets and variables → Actions → Secrets
 - Chercher `DENO_DEPLOY_TOKEN` dans la liste
 
 ### Vérifier le nom du projet
 
 Dans `.github/workflows/devsecops.yml` (ligne 59):
+
 ```yaml
 deployctl deploy --project=mon-projet-securise --entrypoint=server.ts
 ```
@@ -85,9 +87,9 @@ Commentez le job `deploy` dans `.github/workflows/devsecops.yml`:
 ## 📝 Note importante
 
 Le workflow a été modifié pour ne s'exécuter que si le secret existe:
+
 ```yaml
 if: github.ref == 'refs/heads/main' && secrets.DENO_DEPLOY_TOKEN != ''
 ```
 
 Si le secret n'existe pas, le job `deploy` sera simplement ignoré (pas d'erreur).
-
