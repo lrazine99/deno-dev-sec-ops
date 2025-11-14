@@ -109,9 +109,16 @@ app.use(securityHeaders);
 app.use(router.routes());
 app.use(router.allowedMethods());
 
+const handler = async (req: Request): Promise<Response> => {
+  return (await app.handle(req)) || new Response("Not Found", { status: 404 });
+};
+
 if (import.meta.main) {
-  console.log("Server running on http://localhost:8000");
-  await app.listen({ port: 8000 });
+  const port = Deno.env.get("PORT") ? parseInt(Deno.env.get("PORT")!) : 8000;
+  console.log(`Server running on http://localhost:${port}`);
+  Deno.serve({ port }, handler);
+} else {
+  Deno.serve(handler);
 }
 
 export { app };
